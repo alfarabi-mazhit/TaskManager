@@ -1,34 +1,58 @@
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { Tabs } from "expo-router";
+import React from "react";
+import { Ionicons } from "@expo/vector-icons";
+import { StyleSheet, View } from "react-native";
 
-import { TabBarIcon } from '@/components/navigation/TabBarIcon';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function BottomNavigation() {
+  const styles = StyleSheet.create({
+    icon: {
+      backgroundColor: "#fff",
+      padding: 10,
+      paddingHorizontal: 15,
+      borderRadius: 32,
+      alignItems: "center",
+      justifyContent: "center",
+    },
+  });
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-      }}>
+        tabBarActiveTintColor: "#3A49F9",
+        tabBarStyle: {
+          backgroundColor: "transparent",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          borderTopWidth: 0,
+          elevation: 0,
+          shadowOpacity: 0,
+        },
+      }}
+    >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
+          title: "Home",
+          tabBarLabel: () => null,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'home' : 'home-outline'} color={color} />
+            <View style={styles.icon}>
+              <Ionicons name="home-sharp" size={32} color={color} />
+            </View>
           ),
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="calendar"
         options={{
-          title: 'Explore',
+          title: "",
+          tabBarLabel: () => null,
           tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon name={focused ? 'code-slash' : 'code-slash-outline'} color={color} />
+            <View style={styles.icon}>
+              <Ionicons name="calendar" size={32} color={color} />
+            </View>
           ),
         }}
       />
